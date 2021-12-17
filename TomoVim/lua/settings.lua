@@ -21,3 +21,16 @@ vim.go.hidden = true
 vim.opt.completeopt = "preview"
 vim.go.timeoutlen = 100
 vim.opt.colorcolumn = "80"
+
+vim.opt.clipboard = "unnamedplus"
+vim.opt.cmdheight = 2
+vim.opt.mouse = "a"
+vim.opt.showtabline = 2
+vim.opt.undofile = true
+vim.opt.swapfile = false
+vim.opt.showmode = false
+vim.opt.wrap = false
+vim.opt.relativenumber = false
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.cmd "set whichwrap+=<,>,[,],h,l"

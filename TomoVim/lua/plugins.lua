@@ -39,6 +39,8 @@ return require('packer').startup(function()
   -- themes
   use 'folke/tokyonight.nvim'
   use 'tanvirtin/monokai.nvim'
+  use 'EdenEast/nightfox.nvim'
+  use 'bluz71/vim-nightfly-guicolors'
 
   -- UX
 	use {
