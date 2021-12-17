@@ -1,0 +1,24 @@
+# Oh-My-Zsh
+Install ohmyzsh from https://ohmyz.sh/#install 
+
+# Theme
+"takashiyoshida" from https://github.com/ohmyzsh/ohmyzsh/wiki/themes
+
+# Plugins
+- git
+- autojump
+- autopep8
+- zsh-autosugggestions
+- colorize
+- zsh-syntax-hightlighting
+- zsh-z
+
+# NodeJS
+Install NodeJS on Ubuntu
+
+# Exa 
+from https://github.com/ogham/exa
+
+# Anaconda
+
+# Neovim
