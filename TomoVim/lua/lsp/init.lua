@@ -40,7 +40,7 @@ require('lspconfig').pyright.setup {
 -- C/C++
 USER = vim.fn.expand('$USER')
 local clangd_binary = "/home/" .. USER .. "/.local/share/nvim/lsp_servers/clangd/clangd_13.0.0/bin/clangd"
-require('lspconfig').pyright.setup {
+require('lspconfig').clangd.setup {
   cmd = { clangd_binary, "--background-index" },
   filetypes = { "c", "cpp", "objc", "objcpp" }
 }
