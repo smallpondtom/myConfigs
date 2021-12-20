@@ -78,6 +78,20 @@ return require('packer').startup(function()
   -- Dashboard
   use 'glepnir/dashboard-nvim'
 
+  -- Debugger
+  use 'mfussenegger/nvim-dap'
+  use "Pocco81/DAPInstall.nvim"
+  use "nvim-telescope/telescope-dap.nvim"
+  use "mfussenegger/nvim-dap-python"
+  use "theHamsta/nvim-dap-virtual-text"
+  use "rcarriga/nvim-dap-ui"
+  use {
+    "rcarriga/vim-ultest",
+    config = "require('config.ultest').post()",
+    run = ":UpdateRemotePlugins",
+    requires = { "vim-test/vim-test" },
+  }
+
 	if packer_bootstrap then
 	require('packer').sync()
 	end

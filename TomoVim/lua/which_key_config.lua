@@ -70,6 +70,7 @@ local mappings = {
     "<cmd>lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<CR>",
     "Preview Colorscheme",
     },
+    d = { "<cmd>lua require('telescope').extensions.dap.list_breakpoints{}<CR>", "BreakPoints" }
   },
   M = {
     name = "Markdown",
@@ -139,6 +140,34 @@ local mappings = {
     S = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",
+    },
+  },
+  D = {
+    name = "Debugger",
+    T = { "<cmd>UltestDebug", "Test Debug" },
+    t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle BreakPoint" },
+    c = { "<cmd>lua require.'dap'.continue()<cr>", "Continue" },
+    s = { "<cmd>lua require.'dap'.step_over()<cr>", "Step Over" },
+    i = { "<cmd>lua require.'dap'.step_into()<cr>", "Step Into" },
+    r = {
+      name = "REPL",
+      o = { "<cmd>lua require.'dap'.repl.open()<cr>", "Open" },
+      r = { "<cmd>lua require.'dap'.repl.run_last()<cr>", "Run Last" }
+    },
+    u = {
+      name = "UI",
+      t = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle" },
+      v = {
+        name = "Variables",
+        s = { "<cmd>lua require('dap.ui.variables').scopes()<cr>", "Scopes" },
+        h = { "<cmd>lua require('dap.ui.variables').hover()<cr>", "Hover" },
+        v = { "<cmd>lua require('dap.ui.variables').visual_hover()<cr>", "Visual Hover" },
+      },
+      w = {
+        name = "Widgets",
+        h = { "<cmd>lua require('dap.ui.widgets').hover()<cr>", "Hover" },
+        f = { "<cmd>lua local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<cr>", "Float" },
+      },
     },
   },
 }
