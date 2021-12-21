@@ -51,4 +51,11 @@ vim.g.dashboard_custom_section = {
   },
 }
 
-vim.g.dashboard_command_footer = { "TomoVim is Awesome" }
+vim.g.dashboard_custom_footer = {
+  "                       ──▒▒▒▒▒▒───▄████▄      ",
+  "     TomoVim            ─▒─▄▒─▄▒──███▄█▀",
+  "        is              ─▒▒▒▒▒▒▒─▐████──█─█",
+  "     Awesome            ─▒▒▒▒▒▒▒──█████▄",
+  "                        ─▒─▒─▒─▒───▀████▀",
+}
+

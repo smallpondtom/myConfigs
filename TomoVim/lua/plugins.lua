@@ -35,6 +35,7 @@ return require('packer').startup(function()
   -- Editing
   use 'windwp/nvim-autopairs'
   use 'numToStr/Comment.nvim'
+  use "rafamadriz/friendly-snippets"
 
   -- themes
   use 'folke/tokyonight.nvim'
