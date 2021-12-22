@@ -55,7 +55,7 @@ local mappings = {
     u = { "<cmd>PackerUpdate<CR>", "Update" },
   },
   s = {
-    name = "Scope",
+    name = "Search",
     g = { "<cmd>Telescope git_branches<CR>", "Check Branch" },
     c = { "<cmd>Telescope colorscheme<CR>", "Colorscheme" },
     f = { "<cmd>Telescope find_files<CR>", "Find File" },
@@ -63,8 +63,10 @@ local mappings = {
     M = { "<cmd>Telescope man_pages<CR>", "Man Pages" },
     r = { "<cmd>Telescope oldfiles<CR>", "Open Recent File" },
     R = { "<cmd>Telescope registers<CR>", "Registers" },
-    l = { "<cmd>Telescope live_grep<CR>", "Text" },
+    t = { "<cmd>Telescope live_grep<CR>", "Text" },
+    s = { "<cmd>Telescope grep_string<CR>", "String" },
     k = { "<cmd>Telescope keymaps<CR>", "Keymaps" },
+    b = { "<cmd>Telescope file_browser<CR>", "File Browser" },
     C = { "<cmd>Telescope commands<CR>", "Commmands" },
     p = {
     "<cmd>lua require('telescope.builtin.internal').colorscheme({enable_preview = true})<CR>",
@@ -106,34 +108,20 @@ local mappings = {
   },
 
   l = {
-    name = "LSP",
+    name = "Lsp",
     a = { "<cmd>lua require('lvim.core.telescope').code_actions()<cr>", "Code Action" },
     d = {
-      "<cmd>Telescope lsp_document_diagnostics<cr>",
+      "<cmd>Telescope diagnostics bufnr=0<cr>",
       "Document Diagnostics",
     },
     w = {
-      "<cmd>Telescope lsp_workspace_diagnostics<cr>",
+      "<cmd>Telescope diagnostics<cr>",
       "Workspace Diagnostics",
     },
     f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-    j = {
-      "<cmd>lua vim.lsp.diagnostic.goto_next({popup_opts = {border = lvim.lsp.popup_border}})<cr>",
-      "Next Diagnostic",
-    },
-    k = {
-      "<cmd>lua vim.lsp.diagnostic.goto_prev({popup_opts = {border = lvim.lsp.popup_border}})<cr>",
-      "Prev Diagnostic",
-    },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    p = {
-      name = "Peek",
-      d = { "<cmd>lua require('lvim.lsp.peek').Peek('definition')<cr>", "Definition" },
-      t = { "<cmd>lua require('lvim.lsp.peek').Peek('typeDefinition')<cr>", "Type Definition" },
-      i = { "<cmd>lua require('lvim.lsp.peek').Peek('implementation')<cr>", "Implementation" },
-    },
     q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
@@ -141,32 +129,44 @@ local mappings = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",
     },
+    p = {
+      name = "Picker",
+      r = { "<cmd>Telescope lsp_references", "References" },
+      s = { "<cmd>Telescope lsp_workspace_symbols", "Workspace Symbols" },
+      d = { "<cmd>Telescope lsp_definitions", "Definitions" },
+      t = { "<cmd>Telescope lsp_type_definition", "Type Defs" },
+    }
   },
   D = {
     name = "Debugger",
     T = { "<cmd>UltestDebug", "Test Debug" },
     t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle BreakPoint" },
+    l = { "<cmd>lua require'dap'.list_breakpoints()<cr>", "List BreakPoints" },
     c = { "<cmd>lua require.'dap'.continue()<cr>", "Continue" },
     s = { "<cmd>lua require.'dap'.step_over()<cr>", "Step Over" },
     i = { "<cmd>lua require.'dap'.step_into()<cr>", "Step Into" },
+    b = { "<cmd>lua require.'dap'.step_back()<cr>", "Step Back" },
     r = {
       name = "REPL",
       o = { "<cmd>lua require.'dap'.repl.open()<cr>", "Open" },
+      c = { "<cmd>lua require.'dap'.repl.close()<cr>", "Close" },
+      t = { "<cmd>lua require.'dap'.repl.toggle()<cr>", "Toggle" },
       r = { "<cmd>lua require.'dap'.repl.run_last()<cr>", "Run Last" }
     },
     u = {
       name = "UI",
       t = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle" },
-      v = {
-        name = "Variables",
-        s = { "<cmd>lua require('dap.ui.variables').scopes()<cr>", "Scopes" },
-        h = { "<cmd>lua require('dap.ui.variables').hover()<cr>", "Hover" },
-        v = { "<cmd>lua require('dap.ui.variables').visual_hover()<cr>", "Visual Hover" },
-      },
       w = {
         name = "Widgets",
+        s = {
+          "local widgets = require('dap.ui.widgets');local my_sidebar = widgets.sidebar(widgets.scopes);my_sidebar.open()",
+          "Scopes",
+        },
+        f = {
+          "local widgets = require('dap.ui.widgets');local my_sidebar = widgets.sidebar(widgets.frames);my_sidebar.open()",
+          "Frames",
+        },
         h = { "<cmd>lua require('dap.ui.widgets').hover()<cr>", "Hover" },
-        f = { "<cmd>lua local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<cr>", "Float" },
       },
     },
   },

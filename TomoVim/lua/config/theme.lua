@@ -19,3 +19,4 @@ vim.cmd[[colorscheme monokai_soda]]
   }
 } ]]
 
+vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
