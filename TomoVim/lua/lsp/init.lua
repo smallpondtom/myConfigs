@@ -2,10 +2,15 @@
 -- htps://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 USER = vim.fn.expand('$USER')
 
+local os = vim.fn.has('unix')
 local sumneko_root_path = "/home/" .. USER .. "/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/"
 local sumneko_binary = ""
 
-sumneko_binary = sumneko_root_path .. "bin/Linux/lua-language-server"
+if os then -- when Linux
+  sumneko_binary = sumneko_root_path .. "bin/lua-language-server"
+else -- if WSL windows
+  sumneko_binary = sumneko_root_path .. "bin/Linux/lua-language-server"
+end -- I don't use MAC
 
 require'lspconfig'.sumneko_lua.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
