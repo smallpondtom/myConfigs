@@ -8,16 +8,18 @@ local sumneko_binary = ""
 
 -- Detect whether it is WSL or pure linux
 local is_wsl = vim.api.nvim_exec([[
-  function! IsWSL()
-    if has("unix")
-      let lines = readfile("/proc/version")
-      if lines[0] =~ "Microsoft"
-        return 1
-      endif
-    endif
-    return 0
+  function! Is_WSL() abort
+    let proc_version = '/proc/version'
+    return filereadable(proc_version)
+          \  ? !empty(filter(
+          \    readfile(proc_version, '', 1), { _, val -> val =~? 'microsoft' }))
+          \  : v:false
   endfunction
+
+  echo Is_WSL()
 ]], true)
+
+print(is_wsl)
 
 if os then -- when Linux
   if is_wsl then  -- if WSL
