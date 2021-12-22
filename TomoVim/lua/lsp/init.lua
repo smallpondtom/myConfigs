@@ -6,11 +6,28 @@ local os = vim.fn.has('unix')
 local sumneko_root_path = "/home/" .. USER .. "/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/"
 local sumneko_binary = ""
 
+-- Detect whether it is WSL or pure linux
+local is_wsl = vim.api.nvim_exec([[
+  function! IsWSL()
+    if has("unix")
+      let lines = readfile("/proc/version")
+      if lines[0] =~ "Microsoft"
+        return 1
+      endif
+    endif
+    return 0
+  endfunction
+]], true)
+
 if os then -- when Linux
-  sumneko_binary = sumneko_root_path .. "bin/lua-language-server"
-else -- if WSL windows
-  sumneko_binary = sumneko_root_path .. "bin/Linux/lua-language-server"
-end -- I don't use MAC
+  if is_wsl then  -- if WSL
+    sumneko_binary = sumneko_root_path .. "bin/Linux/lua-language-server"
+  else -- if pure Linux
+    sumneko_binary = sumneko_root_path .. "bin/lua-language-server"
+  end
+else -- if windows or Mac
+  print("I hate MacOS. Use Linux.")
+end
 
 require'lspconfig'.sumneko_lua.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
