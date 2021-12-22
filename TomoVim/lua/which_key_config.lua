@@ -158,14 +158,6 @@ local mappings = {
       t = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle" },
       w = {
         name = "Widgets",
-        s = {
-          "local widgets = require('dap.ui.widgets');local my_sidebar = widgets.sidebar(widgets.scopes);my_sidebar.open()",
-          "Scopes",
-        },
-        f = {
-          "local widgets = require('dap.ui.widgets');local my_sidebar = widgets.sidebar(widgets.frames);my_sidebar.open()",
-          "Frames",
-        },
         h = { "<cmd>lua require('dap.ui.widgets').hover()<cr>", "Hover" },
       },
     },
