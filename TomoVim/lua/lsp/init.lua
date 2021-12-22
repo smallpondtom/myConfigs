@@ -19,8 +19,6 @@ local is_wsl = vim.api.nvim_exec([[
   echo Is_WSL()
 ]], true)
 
-print(is_wsl)
-
 if os then -- when Linux
   if is_wsl then  -- if WSL
     sumneko_binary = sumneko_root_path .. "bin/Linux/lua-language-server"
