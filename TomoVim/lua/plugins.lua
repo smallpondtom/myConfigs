@@ -5,7 +5,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- Automatically install packer
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP = fn.system {
     "git",
@@ -51,6 +50,10 @@ return require('packer').startup(function(use)
   use 'nvim-lua/plenary.nvim'
   use 'lewis6991/gitsigns.nvim'
   use 'folke/which-key.nvim'
+  use {'pwntester/octo.nvim', config=function()
+    require"octo".setup()
+  end}
+
 
   -- LSP
 	use 'neovim/nvim-lspconfig'
@@ -62,6 +65,7 @@ return require('packer').startup(function(use)
 	use 'L3MON4D3/LuaSnip'
   use 'williamboman/nvim-lsp-installer'
   use 'ray-x/lsp_signature.nvim'
+  use 'folke/trouble.nvim'
 
   -- TS
   use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate"}
@@ -75,6 +79,7 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-autopairs'
   use 'numToStr/Comment.nvim'
   use "rafamadriz/friendly-snippets"
+  use "simrat39/symbols-outline.nvim"
 
   -- themes
   use 'folke/tokyonight.nvim'

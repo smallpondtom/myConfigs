@@ -45,6 +45,7 @@ wk.setup({
 
 local mappings = {
   ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer"},
+  o = { "<cmd>SymbolsOutline<CR>", "Outline" },
   p = {
     name = "Packer",
     c = { "<cmd>PackerCompile<CR>", "Compile" },
@@ -137,6 +138,15 @@ local mappings = {
       t = { "<cmd>Telescope lsp_type_definition", "Type Defs" },
     }
   },
+  t = {
+    name = "Trouble",
+    t = { "<cmd>TroubleToggle<cr>", "Toggle" },
+    w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnose" },
+    d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Doc Diagnose" },
+    q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+    l = { "<cmd>TroubleToggle loclist<cr>", "Locatior" },
+    L = { "<cmd>TroubleToggle lsp_references<cr>", "Lsp Ref" },
+  },
   D = {
     name = "Debugger",
     T = { "<cmd>UltestDebug", "Test Debug" },
@@ -148,14 +158,17 @@ local mappings = {
     b = { "<cmd>lua require.'dap'.step_back()<cr>", "Step Back" },
     r = {
       name = "REPL",
-      o = { "<cmd>lua require.'dap'.repl.open()<cr>", "Open" },
-      c = { "<cmd>lua require.'dap'.repl.close()<cr>", "Close" },
-      t = { "<cmd>lua require.'dap'.repl.toggle()<cr>", "Toggle" },
-      r = { "<cmd>lua require.'dap'.repl.run_last()<cr>", "Run Last" }
+      o = { "<cmd>lua require('dap.repl').open()<cr>", "Open" },
+      c = { "<cmd>lua require('dap.repl').close()<cr>", "Close" },
+      t = { "<cmd>lua require('dap.repl').toggle()<cr>", "Toggle" },
+      r = { "<cmd>lua require('dap.repl').run_last()<cr>", "Run Last" }
     },
     u = {
       name = "UI",
+      s = { "<cmd>lua require('dapui').setup()<cr>", "Setup" },
       t = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle" },
+      o = { "<cmd>lua require('dapui').open()<cr>", "Open" },
+      c = { "<cmd>lua require('dapui').close()<cr>", "Close" },
       w = {
         name = "Widgets",
         h = { "<cmd>lua require('dap.ui.widgets').hover()<cr>", "Hover" },
