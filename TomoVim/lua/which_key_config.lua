@@ -147,6 +147,16 @@ local mappings = {
     l = { "<cmd>TroubleToggle loclist<cr>", "Locatior" },
     L = { "<cmd>TroubleToggle lsp_references<cr>", "Lsp Ref" },
   },
+  C = {
+    name = "Command Line",
+    l = { "<cmd>lua lazygit_toggle()<CR>", "Lazygit" },
+    b = { "<cmd>lua bpytop_toggle()<CR>", "Bpytop" },
+    h = { "<cmd>ToggleTerm direction=horizontal<cr>", "Toggle Horz" },
+    v = { "<cmd>ToggleTerm direction=vertical<cr>", "Toggle Vert" },
+    f = { "<cmd>ToggleTerm direction=float<cr>", "Open Float" },
+    t = { "<cmd>ToggleTerm direction=tab<cr>", "Open Tab" },
+    a = { "<cmd>ToggleTermToggleAll<cr>", "Toggle All" },
+  },
   D = {
     name = "Debugger",
     T = { "<cmd>UltestDebug", "Test Debug" },

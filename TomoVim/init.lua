@@ -16,3 +16,5 @@ require('dap-config')
 require('config')
 require('octo-config')
 require('trouble-config')
+require('toggleterm-config')
+
