@@ -51,11 +51,27 @@ require'lspconfig'.sumneko_lua.setup {
     }
 }
 
--- PYTHON
+-- PYRIGHT
+-- USER = vim.fn.expand('$USER')
+-- local pyright_binary = "/home/" .. USER .. "/.local/share/nvim/lsp_servers/python/node_modules/.bin/pyright-langserver"
+-- require('lspconfig').pyright.setup {
+--   cmd = { pyright_binary, "--stdio" },
+--   filetypes = { "python" }
+-- }
+
+-- PYTHON JEDI
+-- USER = vim.fn.expand('$USER')
+-- local jedi_binary = "/home/" .. USER .. "/.local/share/nvim/lsp_servers/jedi_language_server/venv/bin/jedi-language-server"
+-- require('lspconfig').jedi_language_server.setup {
+--   cmd = { jedi_binary },
+--   filetypes = { "python" }
+-- }
+
+-- PYTHON PYLSP
 USER = vim.fn.expand('$USER')
-local pyright_binary = "/home/" .. USER .. "/.local/share/nvim/lsp_servers/python/node_modules/.bin/pyright-langserver"
-require('lspconfig').pyright.setup {
-  cmd = { pyright_binary, "--stdio" },
+local pylsp_binary = "/home/" .. USER .. "/.local/share/nvim/lsp_servers/pylsp/venv/bin/pylsp"
+require('lspconfig').pylsp.setup {
+  cmd = { pylsp_binary },
   filetypes = { "python" }
 }
 

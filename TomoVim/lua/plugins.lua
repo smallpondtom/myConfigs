@@ -67,6 +67,9 @@ return require('packer').startup(function(use)
   use 'ray-x/lsp_signature.nvim'
   use 'folke/trouble.nvim'
 
+  -- Python Formatter
+  use "tell-k/vim-autopep8"
+
   -- TS
   use { 'nvim-treesitter/nvim-treesitter', run = ":TSUpdate"}
   use "p00f/nvim-ts-rainbow"
@@ -137,6 +140,9 @@ return require('packer').startup(function(use)
     run = ":UpdateRemotePlugins",
     requires = { "vim-test/vim-test" },
   }
+
+  -- Octave/Matlab
+  use 'tranvansang/octave.vim'
 
 	if packer_bootstrap then
 	require('packer').sync()

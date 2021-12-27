@@ -17,4 +17,5 @@ require('config')
 require('octo-config')
 require('trouble-config')
 require('toggleterm-config')
-
+require('octave-matlab')
+require('autopep8')

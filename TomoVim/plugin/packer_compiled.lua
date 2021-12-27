@@ -210,6 +210,11 @@ _G.packer_plugins = {
     path = "/home/smallpondtomo/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
+  ["octave.vim"] = {
+    loaded = true,
+    path = "/home/smallpondtomo/.local/share/nvim/site/pack/packer/start/octave.vim",
+    url = "https://github.com/tranvansang/octave.vim"
+  },
   ["octo.nvim"] = {
     config = { "\27LJ\2\n2\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tocto\frequire\0" },
     loaded = true,
@@ -267,6 +272,11 @@ _G.packer_plugins = {
     path = "/home/smallpondtomo/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
   },
+  ["vim-autopep8"] = {
+    loaded = true,
+    path = "/home/smallpondtomo/.local/share/nvim/site/pack/packer/start/vim-autopep8",
+    url = "https://github.com/tell-k/vim-autopep8"
+  },
   ["vim-doge"] = {
     loaded = true,
     path = "/home/smallpondtomo/.local/share/nvim/site/pack/packer/start/vim-doge",
@@ -296,14 +306,6 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: vim-ultest
-time([[Config for vim-ultest]], true)
-require('config.ultest').post()
-time([[Config for vim-ultest]], false)
--- Config for: octo.nvim
-time([[Config for octo.nvim]], true)
-try_loadstring("\27LJ\2\n2\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tocto\frequire\0", "config", "octo.nvim")
-time([[Config for octo.nvim]], false)
 -- Config for: project.nvim
 time([[Config for project.nvim]], true)
 try_loadstring("\27LJ\2\n>\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\17project_nvim\frequire\0", "config", "project.nvim")
@@ -312,6 +314,14 @@ time([[Config for project.nvim]], false)
 time([[Config for nvim-tree.lua]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
 time([[Config for nvim-tree.lua]], false)
+-- Config for: vim-ultest
+time([[Config for vim-ultest]], true)
+require('config.ultest').post()
+time([[Config for vim-ultest]], false)
+-- Config for: octo.nvim
+time([[Config for octo.nvim]], true)
+try_loadstring("\27LJ\2\n2\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tocto\frequire\0", "config", "octo.nvim")
+time([[Config for octo.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

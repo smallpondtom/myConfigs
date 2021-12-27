@@ -9,7 +9,7 @@ require('monokai').setup {}
 require('monokai').setup { palette = require('monokai').pro }
 require('monokai').setup { palette = require('monokai').soda }
 
-vim.cmd[[colorscheme monokai_soda]]
+vim.cmd[[colorscheme monokai]]
 
 --[[ require('lualine').setup {
   options = {
@@ -20,3 +20,5 @@ vim.cmd[[colorscheme monokai_soda]]
 } ]]
 
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+vim.cmd("hi clear LineNr")
+vim.cmd("hi clear SignColumn")
