@@ -49,6 +49,5 @@ require('nvim-autopairs').setup({
     highlight_grey = "Comment",
   },
 
-  --require("nvim-treesitter.configs").setup { autopairs = { enable = true } }
+  require("nvim-treesitter.configs").setup { autopairs = { enable = true } }
 })
-  

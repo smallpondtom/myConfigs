@@ -66,3 +66,10 @@ require('Comment').setup({
   ---@type fun(ctx: Ctx)
   post_hook = nil,
 })
+
+-- Commenting for MATLAB files
+if vim.bo.filetype == "m" then
+  vim.api.nvim_command('set commentstring=% %s')
+end
+local ft = vim.bo.filetype
+print(ft)

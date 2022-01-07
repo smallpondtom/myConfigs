@@ -20,10 +20,12 @@ local is_wsl = vim.api.nvim_exec([[
 ]], true)
 
 if os then -- when Linux
-  if is_wsl then  -- if WSL
+  if is_wsl=="1" then  -- if WSL
     sumneko_binary = sumneko_root_path .. "bin/Linux/lua-language-server"
-  else -- if pure Linux
+  elseif is_wsl=="0" then -- if pure Linux
     sumneko_binary = sumneko_root_path .. "bin/lua-language-server"
+  else
+    print("Not valid -> requires debugging.")
   end
 else -- if windows or Mac
   print("I hate MacOS. Use Linux.")
@@ -52,12 +54,12 @@ require'lspconfig'.sumneko_lua.setup {
 }
 
 -- PYRIGHT
--- USER = vim.fn.expand('$USER')
--- local pyright_binary = "/home/" .. USER .. "/.local/share/nvim/lsp_servers/python/node_modules/.bin/pyright-langserver"
--- require('lspconfig').pyright.setup {
---   cmd = { pyright_binary, "--stdio" },
---   filetypes = { "python" }
--- }
+USER = vim.fn.expand('$USER')
+local pyright_binary = "/home/" .. USER .. "/.local/share/nvim/lsp_servers/python/node_modules/.bin/pyright-langserver"
+require('lspconfig').pyright.setup {
+  cmd = { pyright_binary, "--stdio" },
+  filetypes = { "python" }
+}
 
 -- PYTHON JEDI
 -- USER = vim.fn.expand('$USER')
@@ -68,12 +70,12 @@ require'lspconfig'.sumneko_lua.setup {
 -- }
 
 -- PYTHON PYLSP
-USER = vim.fn.expand('$USER')
-local pylsp_binary = "/home/" .. USER .. "/.local/share/nvim/lsp_servers/pylsp/venv/bin/pylsp"
-require('lspconfig').pylsp.setup {
-  cmd = { pylsp_binary },
-  filetypes = { "python" }
-}
+-- USER = vim.fn.expand('$USER')
+-- local pylsp_binary = "/home/" .. USER .. "/.local/share/nvim/lsp_servers/pylsp/venv/bin/pylsp"
+-- require('lspconfig').pylsp.setup {
+--   cmd = { pylsp_binary },
+--   filetypes = { "python" }
+-- }
 
 -- C/C++
 USER = vim.fn.expand('$USER')

@@ -24,7 +24,7 @@ require("nvim-dap-virtual-text").setup {
     virt_text_pos = 'eol',              -- position of virtual text, see `:h nvim_buf_set_extmark()`
     all_frames = true,                 -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
     virt_lines = false,                 -- show virtual lines instead of virtual text (will flicker!)
-    virt_text_win_col = 80,             -- position the virtual text at a fixed window column (starting from the first text column) 
+    virt_text_win_col = 80,             -- position the virtual text at a fixed window column (starting from the first text column)
 }
 
 -- nvim-dap-ui
