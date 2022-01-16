@@ -50,7 +50,7 @@ local mappings = {
 		name = "Packer",
 		c = { "<cmd>PackerCompile<CR>", "Compile" },
 		i = { "<cmd>PackerInstall<CR>", "Install" },
-		r = { "<cmd>lua require('lvim.plugin-loader').recompile()<cr>", "Recompile" },
+		l = { "<cmd>PackerLoad<cr>", "Load" },
 		s = { "<cmd>PackerSync<CR>", "Sync" },
 		S = { "<cmd>PackerStatus<CR>", "Status" },
 		u = { "<cmd>PackerUpdate<CR>", "Update" },
@@ -76,6 +76,8 @@ local mappings = {
 		d = { "<cmd>lua require('telescope').extensions.dap.list_breakpoints{}<CR>", "BreakPoints" },
 		j = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Search Buffer" },
 		n = { "<cmd>Telescope notify<CR>", "Notify" },
+    e = { "<cmd>Telescope env<CR>", "Envs"},
+    o = {"<cmd>Telescope repo list<CR>", "Git Repos"}
 	},
 	M = {
 		name = "Markdown",

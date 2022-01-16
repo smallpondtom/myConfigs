@@ -103,6 +103,8 @@ return require("packer").startup(function(use)
 		end,
 		requires = { "tami5/sqlite.lua" },
 	})
+	use({ "LinArcX/telescope-env.nvim" })
+	use("cljoly/telescope-repo.nvim")
 
 	-- Editing
 	use("windwp/nvim-autopairs")
@@ -112,6 +114,7 @@ return require("packer").startup(function(use)
 	use("Pocco81/AutoSave.nvim")
 	use({ "michaelb/sniprun", run = "bash install.sh" })
 	use({ "anuvyklack/pretty-fold.nvim" })
+	use("lukas-reineke/indent-blankline.nvim")
 
 	-- themes
 	use("folke/tokyonight.nvim")

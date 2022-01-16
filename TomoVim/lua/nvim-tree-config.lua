@@ -71,6 +71,6 @@ require("nvim-tree").setup({
 vim.cmd([[
   augroup goToCurrentDirectory
     autocmd!
-    autocmd VimEnter * lcd %:p:h
+    autocmd VimEnter,WinEnter,BufEnter * if isdirectory(expand("%:p:h")) | lcd %:p:h | endif
   augroup end
 ]])
