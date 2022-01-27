@@ -121,6 +121,10 @@ return require("packer").startup(function(use)
 	use("tanvirtin/monokai.nvim")
 	use("EdenEast/nightfox.nvim")
 	use("bluz71/vim-nightfly-guicolors")
+	use({ "ellisonleao/gruvbox.nvim" })
+	use("savq/melange")
+  use("sainnhe/sonokai")
+  use("sainnhe/everforest")
 
 	-- UI
 	use({

@@ -1,16 +1,40 @@
--- Setting up colorschemes for nvim
+math.randomseed(os.time())
 
-vim.g.tokyonight_style = "night"
+-- Setting up colorschemes for nvim
+vim.cmd([[
+  if has('termguicolors')
+    set termguicolors
+  endif
+]])
+
+-- Sonokai
+local sonokai_styles = { "default", "atlantis", "andromeda", "shusia", "maia", "espresso" }
+local sonokai_style = sonokai_styles[math.random(1, #sonokai_styles)]
+vim.g.sonokai_style = sonokai_style
+vim.g.sonokai_enable_italic = 1
+vim.g.sonokai_disable_italic_comment = 1
+
+-- Tokyonight
+local tokyonight_styles = { "night", "storm" }
+local tokyonight_style = tokyonight_styles[math.random(1, #tokyonight_styles)]
+vim.g.tokyonight_style = tokyonight_style
 vim.g.tokyonight_italic_comments = true
 vim.g.tokyonight_dark_sidebar = true
 vim.g.tokyonight_dark_float = true
 
-require('monokai').setup {}
-require('monokai').setup { palette = require('monokai').pro }
-require('monokai').setup { palette = require('monokai').soda }
+-- Monokai
+require("monokai").setup({})
+require("monokai").setup({ palette = require("monokai").pro })
+require("monokai").setup({ palette = require("monokai").soda })
+
+-- Everforest
+local everForest_styles = { "hard", "medium", "soft" }
+local everForest_style = everForest_styles[math.random(1, #everForest_styles)]
+vim.g.everForest_background = everForest_style
 
 -- Detect whether it is WSL or pure linux
-local is_wsl = vim.api.nvim_exec([[
+local is_wsl = vim.api.nvim_exec(
+	[[
   function! Is_WSL() abort
     let proc_version = '/proc/version'
     return filereadable(proc_version)
@@ -20,19 +44,37 @@ local is_wsl = vim.api.nvim_exec([[
   endfunction
 
   echo Is_WSL()
-]], true)
+]],
+	true
+)
+
+-- Random selection of best colorschemes (for WSL)
+local best_colorschemes = {
+	"darkblue",
+	"duskfox",
+	"gruvbox",
+	"monokai",
+	"nightfly",
+	"nightfox",
+	"nordfox",
+	"tokyonight",
+	"sonokai",
+	"everforest",
+}
+-- Chose a random one
+local rand_colorscheme = best_colorschemes[math.random(1, #best_colorschemes)]
 
 if os then -- when Linux
-  if is_wsl=="1" then  -- if WSL
-    vim.cmd[[colorscheme monokai]]
-    vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
-  elseif is_wsl=="0" then -- if pure Linux
-    vim.cmd[[colorscheme gruvbox]]
-  else
-    print("Not valid -> requires debugging.")
-  end
+	if is_wsl == "1" then -- if WSL
+		vim.cmd("colorscheme "..rand_colorscheme)
+		vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+	elseif is_wsl == "0" then -- if pure Linux
+		vim.cmd([[colorscheme gruvbox]])
+	else
+		print("Not valid -> requires debugging.")
+	end
 else -- if windows or Mac
-  print("I hate MacOS. Use Linux.")
+	print("I hate MacOS. Use Linux.")
 end
 
 --[[ require('lualine').setup {
