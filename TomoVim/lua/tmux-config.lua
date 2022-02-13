@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "tmux")
+if not status_ok then
+  return
+end
+
 require("tmux").setup({
 	-- overwrite default configuration
 	-- here, e.g. to enable default bindings

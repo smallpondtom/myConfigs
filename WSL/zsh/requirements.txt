@@ -22,3 +22,15 @@ from https://github.com/ogham/exa
 # Anaconda
 
 # Neovim
+
+# Haskell
+
+# Rust 
+
+# PHP
+
+# Lua
+
+# Ruby 
+
+# z (maneuver)

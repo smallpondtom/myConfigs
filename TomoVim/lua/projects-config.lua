@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "project_nvim")
+if not status_ok then
+  return 
+end
+
 require('project_nvim').setup({
   -- Manual mode doesn't automatically change your root directory, so you have
   -- the option to manually do so using `:ProjectRoot` command.

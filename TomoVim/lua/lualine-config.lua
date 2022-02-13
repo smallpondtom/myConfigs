@@ -1,3 +1,9 @@
+local status_ok, _ = pcall(require, "lualine")
+if not status_ok then
+  return
+end
+
+
 -- Eviline config for lualine
 -- Author: shadmansaleh
 -- Credit: glepnir

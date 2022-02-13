@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "which-key")
+if not status_ok then
+  return
+end
+
 local wk = require("which-key")
 
 wk.setup({
@@ -76,8 +81,8 @@ local mappings = {
 		d = { "<cmd>lua require('telescope').extensions.dap.list_breakpoints{}<CR>", "BreakPoints" },
 		j = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Search Buffer" },
 		n = { "<cmd>Telescope notify<CR>", "Notify" },
-    e = { "<cmd>Telescope env<CR>", "Envs"},
-    o = {"<cmd>Telescope repo list<CR>", "Git Repos"}
+		e = { "<cmd>Telescope env<CR>", "Envs" },
+		o = { "<cmd>Telescope repo list<CR>", "Git Repos" },
 	},
 	M = {
 		name = "Markdown",
@@ -85,7 +90,11 @@ local mappings = {
 		s = { "<Plug>MarkdownPreviewStop", "Stop" },
 		t = { "<Plug>MarkdownPreviewToggle", "Toggle" },
 	},
-	["d"] = { "<Plug>DogeGenerate", "DogeGen" },
+	n = {
+		name = "NeoGen",
+		c = { "<cmd>lua require('neogen').generate({ type = 'class' })<CR>", "function" },
+		f = { "<cmd>lua require('neogen').generate({ type = 'func' })<CR>", "function" },
+	},
 	g = {
 		name = "Git",
 		j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
@@ -161,21 +170,14 @@ local mappings = {
 		t = { "<cmd>ToggleTerm direction=tab<cr>", "Open Tab" },
 		a = { "<cmd>ToggleTermToggleAll<cr>", "Toggle All" },
 	},
-	D = {
-		name = "Debugger",
-		T = { "<cmd>UltestDebug", "Test Debug" },
-		t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle BreakPoint" },
-		l = { "<cmd>lua require'dap'.list_breakpoints()<cr>", "List BreakPoints" },
-		c = { "<cmd>lua require.'dap'.continue()<cr>", "Continue" },
-		s = { "<cmd>lua require.'dap'.step_over()<cr>", "Step Over" },
-		i = { "<cmd>lua require.'dap'.step_into()<cr>", "Step Into" },
-		b = { "<cmd>lua require.'dap'.step_back()<cr>", "Step Back" },
-		r = {
-			name = "REPL",
-			o = { "<cmd>lua require('dap.repl').open()<cr>", "Open" },
-			c = { "<cmd>lua require('dap.repl').close()<cr>", "Close" },
-			t = { "<cmd>lua require('dap.repl').toggle()<cr>", "Toggle" },
-			r = { "<cmd>lua require('dap.repl').run_last()<cr>", "Run Last" },
+	d = {
+		name = "Debug",
+		s = {
+			name = "Step",
+			c = { "<cmd>lua require('dap').continue()<CR>", "Continue" },
+			v = { "<cmd>lua require('dap').step_over()<CR>", "Step Over" },
+			i = { "<cmd>lua require('dap').step_into()<CR>", "Step Into" },
+			o = { "<cmd>lua require('dap').step_out()<CR>", "Step Out" },
 		},
 		u = {
 			name = "UI",
@@ -183,11 +185,28 @@ local mappings = {
 			t = { "<cmd>lua require('dapui').toggle()<cr>", "Toggle" },
 			o = { "<cmd>lua require('dapui').open()<cr>", "Open" },
 			c = { "<cmd>lua require('dapui').close()<cr>", "Close" },
-			w = {
-				name = "Widgets",
-				h = { "<cmd>lua require('dap.ui.widgets').hover()<cr>", "Hover" },
-			},
+    },
+		r = {
+			name = "REPL",
+			o = { "<cmd>lua require('dap').repl.open()<cr>", "Open" },
+			c = { "<cmd>lua require('dap').repl.close()<cr>", "Close" },
+			t = { "<cmd>lua require('dap').repl.toggle()<cr>", "Toggle" },
+			r = { "<cmd>lua require('dap').repl.run_last()<cr>", "Run Last" },
 		},
+    b = {
+      name = "Breakpoints",
+      c = {
+				"<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+				"Breakpoint Condition",
+			},
+			m = {
+				"<cmd>lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ') })<CR>",
+				"Log Point Message",
+			},
+			t = { "<cmd>lua require('dap').toggle_breakpoint()<CR>", "Create" },
+			r = { "<cmd>lua require('dap').clear_breakpoints()<CR>", "Clear" },
+		},
+		T = { "<cmd>UltestDebug<CR>", "Test Debug" },
 	},
 }
 

@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "lspconfig")
+if not status_ok then
+  return
+end
+
 local nvim_lsp = require("lspconfig")
 
 -- Use an on_attach function to only map the following keys
@@ -38,7 +43,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "clangd", "sumneko_lua" }
+local servers = { "pyright", "clangd", "sumneko_lua", "cmake", "julials", "hls" }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup({
 		on_attach = on_attach,
@@ -47,9 +52,6 @@ for _, lsp in ipairs(servers) do
 		},
 	})
 end
-
--- Each language-servers
-require("lsp")
 
 vim.diagnostic.config({
 	virtual_text = true,

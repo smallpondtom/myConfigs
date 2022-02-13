@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, 'ultest')
+if not status_ok then
+  return
+end
+
 vim.g.ultest_use_pty = 1
 
 local M = {}

@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "toggle_term")
+if not status_ok then
+  return
+end
+
 require("toggleterm").setup{
   -- size can be a number or function which is passed the current terminal
   size = function(term)

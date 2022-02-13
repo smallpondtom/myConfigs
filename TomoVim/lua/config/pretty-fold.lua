@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "pretty-fold")
+if not status_ok then
+  return
+end
+
 require('pretty-fold').setup{
    keep_indentation = false,
    fill_char = '━',

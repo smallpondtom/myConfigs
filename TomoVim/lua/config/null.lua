@@ -1,7 +1,13 @@
+local status_ok, _ = pcall(require, "null-ls")
+if not status_ok then
+  return
+end
+
 local null_ls = require("null-ls")
 
 local formatting = null_ls.builtins.formatting
 local codeActions = null_ls.builtins.code_actions
+local completion = null_ls.builtins.completion
 
 -- register any number of sources simultaneously
 local sources = {
@@ -9,10 +15,13 @@ local sources = {
 	formatting.autopep8, -- not necessary if pylsp
 	formatting.stylua,
 	formatting.clang_format,
+  formatting.brittany,
 	--formatting.prettier,
 
   codeActions.gitsigns,
 	-- null_ls.builtins.diagnostics.write_good,
+
+  completion.luasnip,
 }
 
 null_ls.setup({

@@ -2,6 +2,16 @@ require("dap-config.dapui-config")
 
 local dap_install = require("dap-install")
 
+local dap_status, dap = pcall(require, "dap")
+
+if not dap_status then
+  vim.notify("Please Install 'nvim-dap'")
+  return
+end
+
+dap.defaults.fallback.focus_terminal = true
+dap.defaults.fallback.terminal_win_cmd = '50vsplit new'
+
 dap_install.setup({
 	installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
 })
@@ -27,6 +37,6 @@ require("nvim-dap-virtual-text").setup {
     virt_text_win_col = 80,             -- position the virtual text at a fixed window column (starting from the first text column)
 }
 
--- nvim-dap-ui
-require("dapui").setup()
-
+vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpointRejected', {text='🟦', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapStopped', {text='⭐️', texthl='', linehl='', numhl=''})

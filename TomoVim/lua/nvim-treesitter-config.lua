@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "nvim-treesitter.configs")
+if not status_ok then
+  return
+end
+
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
@@ -26,3 +31,4 @@ require'nvim-treesitter.configs'.setup {
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+

@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "autosave")
+if not status_ok then
+  return
+end
+
 local autosave = require("autosave")
 
 autosave.setup({

@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "nvim-tree.config")
+if not status_ok then
+  return
+end
+
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 

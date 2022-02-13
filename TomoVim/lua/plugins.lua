@@ -114,7 +114,6 @@ return require("packer").startup(function(use)
 	use("Pocco81/AutoSave.nvim")
 	use({ "michaelb/sniprun", run = "bash install.sh" })
 	use({ "anuvyklack/pretty-fold.nvim" })
-	use("lukas-reineke/indent-blankline.nvim")
 
 	-- themes
 	use("folke/tokyonight.nvim")
@@ -123,8 +122,8 @@ return require("packer").startup(function(use)
 	use("bluz71/vim-nightfly-guicolors")
 	use({ "ellisonleao/gruvbox.nvim" })
 	use("savq/melange")
-  use("sainnhe/sonokai")
-  use("sainnhe/everforest")
+	use("sainnhe/sonokai")
+	use("sainnhe/everforest")
 
 	-- UI
 	use({
@@ -148,8 +147,16 @@ return require("packer").startup(function(use)
 	-- Markdown Preview
 	use("iamcco/markdown-preview.nvim")
 
-	-- Doge Generation
-	use("kkoomen/vim-doge")
+	-- Documentation Generation
+	use({
+		"danymat/neogen",
+		config = function()
+			require("neogen").setup({
+				enabled = true,
+			})
+		end,
+		requires = "nvim-treesitter/nvim-treesitter",
+	})
 
 	-- Project
 	-- Lua
@@ -175,7 +182,11 @@ return require("packer").startup(function(use)
 	-- Octave/Matlab
 	use("tranvansang/octave.vim")
 
+	-- Haskell
+	use("neovimhaskell/haskell-vim")
+
 	if packer_bootstrap then
 		require("packer").sync()
 	end
 end)
+

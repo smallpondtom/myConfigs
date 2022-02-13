@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "trouble")
+if not status_ok then
+  return
+end
+
 require('trouble').setup({
   position = "bottom", -- position of the list can be: bottom, top, left, right
   height = 10, -- height of the trouble list when position is top or bottom

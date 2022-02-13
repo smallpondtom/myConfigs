@@ -99,8 +99,8 @@ export LANG=en_US.UTF-8
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
-else  
-  export EDITOR='nvim'
+else
+  export EDITOR='mvim'
 fi
 
 # Compilation flags
@@ -198,7 +198,7 @@ export PATH=/usr/local/go/bin:$PATH
 
 # XLaunch settings
 # export DISPLAY=192.168.1.121:0.0
-export DISPLAY=:0
+# export DISPLAY=:0
 export LIBGL_ALWAYS_INDIRECT=0
 
 # Git fix configuration 
@@ -226,3 +226,7 @@ alias awesomereadme="cookiecutter gh:dec0dOS/amazing-github-template"
 
 # Aliasing pipes
 alias pipes="~/.local/bin/pipes.sh"
+
+# Browser settings WSL
+export BROWSER="wslview"
+[ -f "/home/smallpondtomo/.ghcup/env" ] && source "/home/smallpondtomo/.ghcup/env" # ghcup-env

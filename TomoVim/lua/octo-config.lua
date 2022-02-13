@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "octo")
+if not status_ok then
+  return
+end
+
 require"octo".setup({
   default_remote = {"upstream", "origin"}; -- order to try remotes
   reaction_viewer_hint_icon = "";         -- marker for user reactions

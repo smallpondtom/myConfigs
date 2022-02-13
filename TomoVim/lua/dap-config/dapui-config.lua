@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "dapui")
+if not status_ok then
+  return
+end
+
 require("dapui").setup({
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
@@ -16,10 +21,10 @@ require("dapui").setup({
         id = "scopes",
         size = 0.20, -- Can be float or integer > 1
       },
-      { id = "breakpoints", size = 0.20 },
-      { id = "stacks", size = 0.20 },
-      { id = "watches", size = 0.20 },
-      { id = "repl", size = 0.20 },
+      { id = "breakpoints", size = 0.15 },
+      { id = "stacks", size = 0.15 },
+      { id = "watches", size = 0.15 },
+      { id = "repl", size = 0.15 },
     },
     size = 20,
     position = "left", -- Can be "left", "right", "top", "bottom"

@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "monokai")
+if not status_ok then
+  return
+end
+
 math.randomseed(os.time())
 
 -- Setting up colorschemes for nvim

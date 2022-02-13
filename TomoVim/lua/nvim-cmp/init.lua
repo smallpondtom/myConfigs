@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "cmp")
+if not status_ok then
+  return
+end
+
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 
@@ -84,6 +89,14 @@ require('lspconfig')['sumneko_lua'].setup {
   on_attach = require'lsp_signature'.on_attach()
 }
 require('lspconfig')['clangd'].setup {
+  capabilities = capabilities,
+  on_attach = require'lsp_signature'.on_attach()
+}
+require('lspconfig')['julials'].setup {
+  capabilities = capabilities,
+  on_attach = require'lsp_signature'.on_attach()
+}
+require('lspconfig')['hls'].setup {
   capabilities = capabilities,
   on_attach = require'lsp_signature'.on_attach()
 }
