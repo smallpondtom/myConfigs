@@ -144,7 +144,11 @@ export NVM_DIR="$HOME/.nvm"
 export PATH=$PATH:/usr/local/go/bin
 
 # Ghcup PATH
-[ -f "/home/tkoike/.ghcup/env" ] && source "/home/tkoike/.ghcup/env" # ghcup-env
+[ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 # Set Luavim as vim
 alias vim='lvim'
+
+# Autojump settings
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
