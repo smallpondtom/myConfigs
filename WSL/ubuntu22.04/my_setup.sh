@@ -43,10 +43,9 @@ sudo apt upgrade -y
 sudo apt-get install vim git build-essential make zsh curl gcc g++ apt-transport-https gnupg2 -y
 
 # Clone my configurations repo
-# mkdir $HOME/.config
-# cd $HOME/.config
-# git clone git@github.com:smallpondtom/myConfigs.git
-# cd $HOME
+cd $HOME/.config
+git clone git@github.com:smallpondtom/myConfigs.git
+cd $HOME
 
 ############################
 # Step 1
