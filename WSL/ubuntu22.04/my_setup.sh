@@ -41,7 +41,7 @@ sudo apt-get install vim git build-essential make zsh curl gcc g++ apt-transport
 
 # Clone my configurations repo
 cd $HOME/.config
-git clone git@github.com:smallpondtom/myConfigs.git
+git clone https://github.com/smallpondtom/myConfigs.git
 cd $HOME
 
 ############################
