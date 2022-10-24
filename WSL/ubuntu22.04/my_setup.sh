@@ -189,3 +189,18 @@ git clone https://github.com/neovim/neovim
 cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo apt-get install python3-pip -y
 echo "[INFO] DONE."
+
+############################
+# Step 5
+# PATCHED NERD FONT
+############################
+echo "[INFO] Setting up nerd font ..."
+cd $HOME
+wget https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
+sudo apt-get install zip unzip -y
+unzip Hack-v3.003-ttf.zip -d ./hack-nerd-fonts
+sudo mv ./hack-nerd-fonts/* /usr/share/fonts/
+rm -rf ./hack-nerd-fonts
+rm -rf Hack*.zip
+fc-cache -f -v
+echo "[INFO] DONE."
