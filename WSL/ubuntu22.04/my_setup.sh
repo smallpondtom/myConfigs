@@ -9,8 +9,8 @@
 #####################################################################################
 # This is a shell file that does a complete setup for a newly installed Ubuntu Linux 
 # Author: Tomoki Koike
-# contact: tkoike45@outlook.com
-# Last Edited: 09-05-2022
+# contact: tkoike45@gmail.com
+# Last Edited: 10-24-2022
 
 ############################
 # Prerequisites
@@ -29,6 +29,7 @@ SUDOPW = $1
 ############################
 
 # Move to home directory just in case
+echo "[INFO] Initiate installer ..."
 cd $HOME
 
 # Make downloads folder for further use
@@ -51,12 +52,13 @@ sudo apt-get install vim git build-essential make zsh curl gcc g++ apt-transport
 # Step 1
 # ZSH
 ############################
-echo "Setting up zsh ...\n"
+echo "[INFO] Setting up zsh ..."
 # Install ohmyzsh and make zsh default 
-yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo $SUDOPW | chsh -s $(which zsh)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install zsh plugins 
-## Colorize - chroma
+## Colorize - chromavim 
 sudo apt-get install chroma -y
 
 ## FzF
@@ -83,9 +85,9 @@ printf "# Settings for zsh fzf\n" >> $HOME/.zshrc
 printf "FZF_BASE=/usr/bin/fzf\n" >> $HOME/.zshrc
 
 printf "\n" >> $HOME/.zshrc
-printf "# Autojump Settings\n" >> $HOME/.zshrc
-printf "[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh \n" >> $HOME/.zshrc
-printf "autoload -U compinit && compinit -u" >> $HOME/.zshrc
+# printf "# Autojump Settings\n" >> $HOME/.zshrc
+# printf "[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh \n" >> $HOME/.zshrc
+# printf "autoload -U compinit && compinit -u" >> $HOME/.zshrc
 
 printf "## Useful aliases\n" >> $HOME/.zshrc
 printf "alias ..='cd ..'\n" >> $HOME/.zshrc
@@ -98,36 +100,36 @@ printf "alias vdir='vdir --color=auto'\n" >> $HOME/.zshrc
 printf "alias grep='grep --color=auto'\n" >> $HOME/.zshrc
 printf "alias fgrep='fgrep --color=auto'\n" >> $HOME/.zshrc
 printf "alias egrep='egrep --color=auto'\n" >> $HOME/.zshrc
-printf "alias windows='cd /mnt/c/Users/Tomo'\n" >> $HOME/.zshrc
+printf "alias windows='cd /mnt/c/Users/Tomo'\n\n" >> $HOME/.zshrc
 
 # Install rust and rustc with rustup
 sudo apt-get update && sudo apt-get upgrade -y
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 printf "\n" >> $HOME/.zshrc
 printf "# RUST PATH\n" >> $HOME/.zshrc
-printf "source $HOME/.cargo/env\n" >> $HOME/.zshrc
+printf "source $HOME/.cargo/env\n\n" >> $HOME/.zshrc
 
 # Install exa
 source $HOME/.zshrc
 cargo install exa
 
 # Replace ls commands with modern exa
-alias ls='exa -al --color=always --group-directories-first --icons' # my preferred listing
-alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs
-alias ll='exa -l --color=always --group-directories-first --icons'  # long format
-alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing
+printf "alias ls='exa -al --color=always --group-directories-first --icons' # my preferred listing\n" >> $HOME/.zshrc
+printf "alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs\n" >> $HOME/.zshrc
+printf "alias ll='exa -l --color=always --group-directories-first --icons'  # long format\n" >> $HOME/.zshrc
+printf "alias lt='exa -aT --color=always --group-directories-first --icons' # tree listing\n\n" >> $HOME/.zshrc
 
-echo "DONE.\n"
+echo "[INFO] DONE."
 
 ############################
 # Step 2
 # TMUX
 ############################
-echo "Setting up tmux ...\n"
+echo "[INFO] Setting up tmux ..."
 echo $SUDOPW | sudo -s apt-get install tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm  # tpm
 cp -f $HOME/.config/myConfigs/WSL/ubuntu22.04/tmux/.tmux.conf .
-echo "DONE.\n"
+echo "[INFO] DONE."
 
 
 ############################
@@ -136,15 +138,17 @@ echo "DONE.\n"
 ############################
 
 # Go
-echo "Installing Go ...\n"
+echo "[INFO] Installing Go ..."
 cd $HOME/Downloads
 rm -rf go*.linux-amd64.tar.gz
 wget https://go.dev/dl/$(curl 'https://go.dev/VERSION?m=text').linux-amd64.tar.gz
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go*.linux-amd64.tar.gz
-echo "DONE.\n"
+printf "# Go PATH\n" >> $HOME/.zshrc
+printf "export PATH=$PATH:/usr/local/go/bin \n" >> $HOME/.zshrc
+echo "[INFO] DONE."
 
 # Julia 
-echo "Installing Julia ...\n"
+echo "[INFO] Installing Julia ..."
 sudo apt-get update && sudo apt-get upgrade -y
 cd $HOME/Downloads
 rm -rf julia*.tar.gz
@@ -153,15 +157,15 @@ tar -xvzf julia*.gz
 rm -f julia*-linux*.tar.gz
 sudo mv julia*/ /opt/
 sudo ln -s /opt/julia-*/bin/julia /usr/local/bin/julia
-echo "DONE.\n"
+echo "[INFO] DONE."
 
 # Haskell with ghcup 
-echo "Installing Haskell ...\n"
+echo "[INFO] Installing Haskell ..."
 cd $HOME
 sudo apt-get update -y
 sudo apt install -y build-essential curl libffi-dev libffi8ubuntu1 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_GHC_VERSION=latest BOOTSTRAP_HASKELL_CABAL_VERSION=latest BOOTSTRAP_HASKELL_INSTALL_STACK=1 BOOTSTRAP_HASKELL_INSTALL_HLS=1 BOOTSTRAP_HASKELL_ADJUST_BASHRC=P sh
-echo "DONE.\n"
+echo "[INFO] DONE."
 
 # Node and Npm with NVM
 echo "Installing node and npm ...\n"
@@ -169,19 +173,19 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 source $HOME/.zshrc
 command -v nvm
 nvm install --lts
-echo "DONE.\n"
+echo "[INFO] DONE."
 
 ############################
 # Step 4
 # NEOVIM
 ############################
-echo "Setting up neovim ...\n"
+echo "[INFO] Setting up neovim ..."
 cd $HOME
 source .zshrc
 echo $SUDOPW | sudo -S apt-get update -y
-sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y
 cd Downloads
 git clone https://github.com/neovim/neovim
 cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
-sudo apt-get install python3-pip
-echo "DONE.\n"
+sudo apt-get install python3-pip -y
+echo "[INFO] DONE."
