@@ -21,7 +21,7 @@
 # (3) Prepare yourself mentally
 
 # First take in the sudo user password as the command line input 
-SUDOPW = $1
+SUDOPW=$1
 
 ############################
 # Step 0
