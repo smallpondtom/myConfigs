@@ -23,18 +23,13 @@
 # First take in the sudo user password as the command line input 
 SUDOPW=$1
 
-############################
-# Step 0
-# Preliminaries
-############################
-
+#! RUN THE BELOW COMMANDS BEFORE RUNNING ENTIRE SHELL SCRIPT
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # Move to home directory just in case
-echo "[INFO] Initiate installer ..."
 cd $HOME
 
 # Update and upgrade 
-echo $SUDOPW | sudo -S apt update  # only the first sudo command requires password
-sudo apt upgrade -y
+sudo -S apt update && sudo apt upgrade -y
 
 # Install some homekeeping packages
 sudo apt-get install vim git build-essential make zsh curl gcc g++ apt-transport-https gnupg2 -y
@@ -44,18 +39,22 @@ cd $HOME/.config
 git clone https://github.com/smallpondtom/myConfigs.git
 cd $HOME
 
+# Make zsh default
+printf "\n" >> $HOME/.zshrc
+printf "setopt inc_append_history\n\n" >> $HOME/.zshrc
+echo $SUDOPW | chsh -s $(which zsh)
+source .zshrc
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#! ONCE YOU HAVE RUN THE ABOVE COMMANDS DELETE THE LINES FROM THIS FILE
+
 ############################
 # Step 1
 # ZSH
 ############################
 echo "[INFO] Setting up zsh ..."
-# Install ohmyzsh and make zsh default 
-printf "\n" >> $HOME/.zshrc
-printf "setopt inc_append_history\n\n" >> $HOME/.zshrc
-echo $SUDOPW | chsh -s $(which zsh)
-exec zsh
+echo $SUDOPW | sudo -S apt-get update
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-exec zsh
+source .zshrc
 
 # Install zsh plugins 
 ## Colorize - chromavim 
@@ -110,7 +109,7 @@ printf "# RUST PATH\n" >> $HOME/.zshrc
 printf "source $HOME/.cargo/env\n\n" >> $HOME/.zshrc
 
 # Install exa
-exec zsh
+source .zshrc
 cargo install exa
 
 # Replace ls commands with modern exa
@@ -163,7 +162,7 @@ echo "[INFO] DONE."
 # Haskell with ghcup 
 echo "[INFO] Installing Haskell ..."
 cd $HOME
-exec zsh
+source .zshrc
 sudo apt-get update -y
 sudo apt install -y build-essential curl libffi-dev libffi8ubuntu1 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_GHC_VERSION=latest BOOTSTRAP_HASKELL_CABAL_VERSION=latest BOOTSTRAP_HASKELL_INSTALL_STACK=1 BOOTSTRAP_HASKELL_INSTALL_HLS=1 BOOTSTRAP_HASKELL_ADJUST_BASHRC=P sh
@@ -172,7 +171,7 @@ echo "[INFO] DONE."
 # Node and Npm with NVM
 echo "[INFO] Installing node and npm ...\n"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-exec zsh
+source .zshrc
 command -v nvm
 nvm install --lts
 echo "[INFO] DONE."
@@ -180,7 +179,7 @@ echo "[INFO] DONE."
 # Lua
 echo "[INFO] Installing Lua ..."
 cd $HOME/Downloads
-exec zsh
+source .zshrc
 curl -R -O http://www.lua.org/ftp/lua-5.4.4.tar.gz
 tar zxf lua-5.4.4.tar.gz
 rm -rf lua*.tar.gz
@@ -198,7 +197,7 @@ echo "[INFO] DONE."
 ############################
 echo "[INFO] Setting up neovim ..."
 cd $HOME
-exec zsh
+source .zshrc
 echo $SUDOPW | sudo -S apt-get update -y
 sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y
 cd Downloads
