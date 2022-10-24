@@ -23,8 +23,10 @@
 # First take in the sudo user password as the command line input 
 SUDOPW=$1
 
-#! RUN THE BELOW COMMANDS BEFORE RUNNING ENTIRE SHELL SCRIPT
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+############################
+# Step 0
+# Preliminaries
+############################
 # Move to home directory just in case
 cd $HOME
 
@@ -43,9 +45,9 @@ cd $HOME
 # printf "\n" >> $HOME/.zshrc
 # printf "setopt inc_append_history\n\n" >> $HOME/.zshrc
 echo $SUDOPW | chsh -s $(which zsh)
+exec zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 source .zshrc
-#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-#! ONCE YOU HAVE RUN THE ABOVE COMMANDS DELETE THE LINES FROM THIS FILE
 
 ############################
 # Step 1
@@ -53,8 +55,6 @@ source .zshrc
 ############################
 echo "[INFO] Setting up zsh ..."
 echo $SUDOPW | sudo -S apt-get update
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-source .zshrc
 
 # Install zsh plugins 
 ## Colorize - chromavim 
@@ -166,6 +166,7 @@ source .zshrc
 sudo apt-get update -y
 sudo apt install -y build-essential curl libffi-dev libffi8ubuntu1 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_GHC_VERSION=latest BOOTSTRAP_HASKELL_CABAL_VERSION=latest BOOTSTRAP_HASKELL_INSTALL_STACK=1 BOOTSTRAP_HASKELL_INSTALL_HLS=1 BOOTSTRAP_HASKELL_ADJUST_BASHRC=P sh
+source .zshrc
 echo "[INFO] DONE."
 
 # Node and Npm with NVM
