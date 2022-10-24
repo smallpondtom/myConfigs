@@ -42,10 +42,10 @@ sudo apt upgrade -y
 sudo apt-get install vim git build-essential make zsh curl gcc g++ apt-transport-https gnupg2 -y
 
 # Clone my configurations repo
-mkdir $HOME/.config
-cd $HOME/.config
-git clone git@github.com:smallpondtom/myConfigs.git
-cd $HOME
+# mkdir $HOME/.config
+# cd $HOME/.config
+# git clone git@github.com:smallpondtom/myConfigs.git
+# cd $HOME
 
 ############################
 # Step 1
@@ -138,15 +138,17 @@ echo "DONE.\n"
 # Go
 echo "Installing Go ...\n"
 cd $HOME/Downloads
-wget https://go.dev/dl/go1.19.linux-amd64.tar.gz
-sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.19.linux-amd64.tar.gz
+rm -rf go*.linux-amd64.tar.gz
+wget https://go.dev/dl/$(curl 'https://go.dev/VERSION?m=text').linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go*.linux-amd64.tar.gz
 echo "DONE.\n"
 
 # Julia 
 echo "Installing Julia ...\n"
 sudo apt-get update && sudo apt-get upgrade -y
 cd $HOME/Downloads
-wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.7-linux-x86_64.tar.gz
+rm -rf julia*.tar.gz
+wget https://julialang-s3.julialang.org/bin/linux/x64/1.8/julia-1.8.2-linux-x86_64.tar.gz
 tar -xvzf julia*.gz
 rm -f julia*-linux*.tar.gz
 sudo mv julia*/ /opt/
