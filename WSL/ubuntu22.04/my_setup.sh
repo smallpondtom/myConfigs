@@ -32,9 +32,6 @@ SUDOPW = $1
 echo "[INFO] Initiate installer ..."
 cd $HOME
 
-# Make downloads folder for further use
-mkdir Downloads
-
 # Update and upgrade 
 echo $SUDOPW | sudo -S apt update  # only the first sudo command requires password
 sudo apt upgrade -y
