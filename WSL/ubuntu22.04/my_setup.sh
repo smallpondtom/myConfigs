@@ -197,6 +197,7 @@ cd Downloads
 git clone https://github.com/neovim/neovim
 cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo apt-get install python3-pip -y
+sudo make install
 echo "[INFO] DONE."
 
 ############################
