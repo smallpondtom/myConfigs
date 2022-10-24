@@ -74,7 +74,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/agkozak/zsh-z ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-z
 
 ## Add new lines to zshrc
-sed -i.bak 's/plugins=(git)/plugins=(\n  colorize\n  fzf\n  git\n  gitignore\n  pyenv\n  zsh-autosuggestions\n  zsh-syntax-hightlighting\n  zsh-z\n)/' $HOME/.zshrc
+sed -i.bak 's/plugins=(git)/plugins=(\n  colorize\n  fzf\n  git\n  gitignore\n  pyenv\n  zsh-autosuggestions\n  zsh-syntax-highlighting\n  zsh-z\n)/' $HOME/.zshrc
 
 printf "\n" >> $HOME/.zshrc
 printf "# Add .local bin to PATH\n" >> $HOME/.zshrc
