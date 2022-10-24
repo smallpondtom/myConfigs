@@ -186,7 +186,9 @@ tar zxf lua-5.4.4.tar.gz
 rm -rf lua*.tar.gz
 cd lua-*
 make all test
-rm lua-*
+sudo make install
+cd ..
+rm -rf lua-*
 echo "[INFO] DONE."
 
 
@@ -204,6 +206,8 @@ git clone https://github.com/neovim/neovim
 cd neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo apt-get install python3-pip -y
 sudo make install
+cd ..
+rm -rf neovim
 echo "[INFO] DONE."
 
 ############################
@@ -212,13 +216,9 @@ echo "[INFO] DONE."
 ############################
 echo "[INFO] Setting up nerd font ..."
 cd $HOME
-wget https://github.com/source-foundry/Hack/releases/download/v3.003/Hack-v3.003-ttf.zip
-sudo apt-get install zip unzip -y
-unzip Hack-v3.003-ttf.zip -d ./hack-nerd-fonts
-sudo mv ./hack-nerd-fonts/* /usr/share/fonts/
-rm -rf ./hack-nerd-fonts
-rm -rf Hack*.zip
-fc-cache -f -v
+git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
+cd nerd-fonts
+./install.sh Hack
 echo "[INFO] DONE."
 
 echo "[INFO] Complete setup!"
