@@ -50,8 +50,12 @@ cd $HOME
 ############################
 echo "[INFO] Setting up zsh ..."
 # Install ohmyzsh and make zsh default 
+printf "\n" >> $HOME/.zshrc
+printf "setopt inc_append_history\n\n" >> $HOME/.zshrc
 echo $SUDOPW | chsh -s $(which zsh)
+exec zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+exec zsh
 
 # Install zsh plugins 
 ## Colorize - chromavim 
@@ -106,7 +110,7 @@ printf "# RUST PATH\n" >> $HOME/.zshrc
 printf "source $HOME/.cargo/env\n\n" >> $HOME/.zshrc
 
 # Install exa
-source $HOME/.zshrc
+exec zsh
 cargo install exa
 
 # Replace ls commands with modern exa
@@ -159,6 +163,7 @@ echo "[INFO] DONE."
 # Haskell with ghcup 
 echo "[INFO] Installing Haskell ..."
 cd $HOME
+exec zsh
 sudo apt-get update -y
 sudo apt install -y build-essential curl libffi-dev libffi8ubuntu1 libgmp-dev libgmp10 libncurses-dev libncurses5 libtinfo5
 curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_GHC_VERSION=latest BOOTSTRAP_HASKELL_CABAL_VERSION=latest BOOTSTRAP_HASKELL_INSTALL_STACK=1 BOOTSTRAP_HASKELL_INSTALL_HLS=1 BOOTSTRAP_HASKELL_ADJUST_BASHRC=P sh
@@ -167,7 +172,7 @@ echo "[INFO] DONE."
 # Node and Npm with NVM
 echo "[INFO] Installing node and npm ...\n"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-source $HOME/.zshrc
+exec zsh
 command -v nvm
 nvm install --lts
 echo "[INFO] DONE."
@@ -175,6 +180,7 @@ echo "[INFO] DONE."
 # Lua
 echo "[INFO] Installing Lua ..."
 cd $HOME/Downloads
+exec zsh
 curl -R -O http://www.lua.org/ftp/lua-5.4.4.tar.gz
 tar zxf lua-5.4.4.tar.gz
 rm -rf lua*.tar.gz
@@ -190,7 +196,7 @@ echo "[INFO] DONE."
 ############################
 echo "[INFO] Setting up neovim ..."
 cd $HOME
-source .zshrc
+exec zsh
 echo $SUDOPW | sudo -S apt-get update -y
 sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen -y
 cd Downloads
