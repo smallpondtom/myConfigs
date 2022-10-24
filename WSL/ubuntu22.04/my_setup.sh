@@ -114,6 +114,7 @@ source $HOME/.zshrc
 cargo install exa
 
 # Replace ls commands with modern exa
+printf "# Replace ls commands with modern exa\n" >> $HOME/.zshrc
 printf "alias ls='exa -al --color=always --group-directories-first --icons' # my preferred listing\n" >> $HOME/.zshrc
 printf "alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs\n" >> $HOME/.zshrc
 printf "alias ll='exa -l --color=always --group-directories-first --icons'  # long format\n" >> $HOME/.zshrc
@@ -168,12 +169,24 @@ curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_H
 echo "[INFO] DONE."
 
 # Node and Npm with NVM
-echo "Installing node and npm ...\n"
+echo "[INFO] Installing node and npm ...\n"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 source $HOME/.zshrc
 command -v nvm
 nvm install --lts
 echo "[INFO] DONE."
+
+# Lua
+echo "[INFO] Installing Lua ..."
+cd $HOME/Downloads
+curl -R -O http://www.lua.org/ftp/lua-5.4.4.tar.gz
+tar zxf lua-5.4.4.tar.gz
+rm -rf lua*.tar.gz
+cd lua-*
+make all test
+rm lua-*
+echo "[INFO] DONE."
+
 
 ############################
 # Step 4
@@ -204,3 +217,5 @@ rm -rf ./hack-nerd-fonts
 rm -rf Hack*.zip
 fc-cache -f -v
 echo "[INFO] DONE."
+
+echo "[INFO] Complete setup!"
