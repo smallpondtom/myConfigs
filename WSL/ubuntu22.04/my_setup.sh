@@ -40,8 +40,8 @@ git clone https://github.com/smallpondtom/myConfigs.git
 cd $HOME
 
 # Make zsh default
-printf "\n" >> $HOME/.zshrc
-printf "setopt inc_append_history\n\n" >> $HOME/.zshrc
+# printf "\n" >> $HOME/.zshrc
+# printf "setopt inc_append_history\n\n" >> $HOME/.zshrc
 echo $SUDOPW | chsh -s $(which zsh)
 source .zshrc
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
